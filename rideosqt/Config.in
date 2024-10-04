@@ -1,5 +1,0 @@
-config BR2_PACKAGE_MY_QT_PROJECT
-    bool "RideOS"
-    depends on BR2_PACKAGE_QT6 # Assuming you're using Qt5 or modify to Qt6 based on the version
-    help
-        custom Qt app integrated with Buildroot.
