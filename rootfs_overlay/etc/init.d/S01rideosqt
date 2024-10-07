@@ -1,0 +1,41 @@
+#!/bin/sh
+
+case "$1" in
+    start)
+        # Wait for Framebuffer to be ready
+        echo "Waiting for framebuffer..."
+        while [ ! -e /dev/fb0 ]; do
+            sleep 1
+        done
+        echo "Framebuffer ready."
+
+        # Wait for GPIO (libgpiod) to be ready
+        echo "Waiting for GPIO (libgpiod)..."
+        while [ ! -e /dev/gpiochip0 ]; do
+            sleep 1
+        done
+        echo "GPIO ready."
+
+        # Start the Qt application
+        echo "Starting RideOS Qt Application..."
+        /usr/bin/rideosqt &
+
+        ;;
+    stop)
+        # Stop the Qt application
+        echo "Stopping RideOS Qt Application..."
+        killall rideosqt
+        ;;
+    restart)
+        # Restart the Qt application
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
+

@@ -1,0 +1,10 @@
+config BR2_PACKAGE_RIDEOSQT
+    bool "RideOS"
+    depends on BR2_PACKAGE_QT6
+    select BR2_PACKAGE_QT6BASE
+    select BR2_PACKAGE_QT6DECLARATIVE
+    select BR2_PACKAGE_QT6SERIALPORT
+    select BR2_PACKAGE_QT6SHADERTOOLS
+    select BR2_PACKAGE_QT6SVG
+    help
+        custom Qt app integrated with Buildroot.
